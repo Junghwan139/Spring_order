@@ -1,4 +1,4 @@
-package com.example.spring_order.member;
+package com.example.spring_order.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,8 @@ import java.util.List;
 @Service
 public class MemberService {
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
 
     // Create
