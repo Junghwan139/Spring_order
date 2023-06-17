@@ -10,15 +10,15 @@ import javax.persistence.*;
 @Getter
 @Entity
 @NoArgsConstructor
-public class Member {
+public class Item {
 
     @Setter
-    @Id  // pk
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // GeneratedValue -> auto_Incerement
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Setter
-    @Column(length = 50)
+    @Column(length = 255)
     private String name;
 
     @Setter
@@ -44,7 +44,7 @@ public class Member {
 
     //    생성자 방식과 builder패턴
     @Builder
-    public Member(String name, String email, String password, String city, String street, String zipcode){
+    public Item(String name, String email, String password, String city, String street, String zipcode){
         this.name = name;
         this.email = email;
         this.password = password;
