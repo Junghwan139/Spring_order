@@ -14,14 +14,12 @@ public class MemberService {
 
     // Create
     public void member_save(MemberForm member){
-
+        Address address = new Address(member.getCity(), member.getStreet(),member.getZipcode());
         Member member1 = Member.builder()
                 .name(member.getName())
                 .email(member.getEmail())
                 .password(member.getPassword())
-                .city(member.getCity())
-                .street(member.getStreet())
-                .zipcode(member.getZipcode())
+                .address(address)
                 .build();
 
         memberRepository.save(member1);

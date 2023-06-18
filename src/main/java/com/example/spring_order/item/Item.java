@@ -18,15 +18,12 @@ public class Item {
     private Long id;
 
     @Setter
-    @Column(length = 255)
     private String name;
 
     @Setter
-    @Column(length = 50, unique = true)
     private Long price;
 
     @Setter
-    @Column(length = 255)
     private Long stockQuantity;
 
 

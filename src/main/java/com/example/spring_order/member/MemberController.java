@@ -21,6 +21,11 @@ public class MemberController {
 
     @GetMapping("members/new")
     public String member_new(Model model){
+
+        // createMemberForm에서 memberForm이라는 Dto 객체를 필요로 하므로, dto객체를 만들어서 model을 통해 전달
+        // DTO에서 NotNull, NotEmpty등 validation 처리를 할 수가 있고, 해당 객체를 createMemberForm화면에 전달함으로서
+        // 화면에서 validation체크를 할 수가 있다.
+
         model.addAttribute("memberForm",new MemberForm());
         return "members/createMemberForm";
     }
@@ -30,7 +35,7 @@ public class MemberController {
     public String member_new_post(MemberForm member)
     {
         memberService.member_save(member);
-        return "redirect:/";
+        return "redirect:/members";
 
     }
 
