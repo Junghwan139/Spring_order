@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -26,13 +25,13 @@ public class MemberController {
         // DTO에서 NotNull, NotEmpty등 validation 처리를 할 수가 있고, 해당 객체를 createMemberForm화면에 전달함으로서
         // 화면에서 validation체크를 할 수가 있다.
 
-        model.addAttribute("memberForm",new MemberForm());
+        model.addAttribute("memberForm",new MemberDto());
         return "members/createMemberForm";
     }
 
 
     @PostMapping("members/new")
-    public String member_new_post(MemberForm member)
+    public String member_new_post(MemberDto member)
     {
         memberService.member_save(member);
         return "redirect:/members";

@@ -2,7 +2,6 @@ package com.example.spring_order.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class MemberService {
 
 
     // Create
-    public void member_save(MemberForm member){
+    public void member_save(MemberDto member){
         Address address = new Address(member.getCity(), member.getStreet(),member.getZipcode());
         Member member1 = Member.builder()
                 .name(member.getName())

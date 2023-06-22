@@ -5,8 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class form {
-
+public class ItemDto {
 
     public Long id;
     private String name;

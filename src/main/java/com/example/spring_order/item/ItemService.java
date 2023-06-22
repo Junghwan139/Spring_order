@@ -1,9 +1,7 @@
 package com.example.spring_order.item;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
@@ -13,7 +11,7 @@ public class ItemService {
     @Autowired ItemRepository itemRepository;
 
     // create
-    public void item_save(form item){
+    public void item_save(ItemDto item){
 
         Item item1 = Item.builder()
                 .name(item.getName())
@@ -35,7 +33,7 @@ public class ItemService {
     }
 
     // update
-    public void update(form item) throws Exception{
+    public void update(ItemDto item) throws Exception{
         Item item1 = itemRepository.findById(item.getId()).orElseThrow(EntityNotFoundException::new);
 
         if(item1 == null){
