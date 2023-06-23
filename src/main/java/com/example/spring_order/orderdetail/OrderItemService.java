@@ -28,7 +28,6 @@ public class OrderItemService {
     }
 
 
-
     // read_all
     public List<Order_Item> order_find_all(){
 
@@ -40,11 +39,6 @@ public class OrderItemService {
     public Order_Item order_find_one(Long id){
         return orderItemRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
-
-
-
-
-
 
 
 

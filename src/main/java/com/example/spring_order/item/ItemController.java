@@ -63,6 +63,14 @@ public class ItemController {
 
     }
 
+    @GetMapping("items/{id}/delete")
+    public String itemdelete(@PathVariable("id")Long myid) {
+        itemService.ItemDelete(myid);
+        return "redirect:/items";
+
+    }
+
+
 
     //get요청 : request header 요청 보이고
     // post요청 : request body 요청 안보이고

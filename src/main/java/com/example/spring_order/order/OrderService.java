@@ -2,7 +2,6 @@ package com.example.spring_order.order;
 
 import com.example.spring_order.item.ItemService;
 import com.example.spring_order.member.MemberService;
-//import com.example.spring_order.orderdetail.OrderItemService;
 import com.example.spring_order.orderdetail.OrderItemService;
 import com.example.spring_order.orderdetail.Order_ItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +20,16 @@ public class OrderService {
     //Create
     public void order_save(OrderDto order){
 
+        // customer_order 저장
         Customer_Order order1 = Customer_Order.builder()
                         .count(order.getCount())
                         .status("ORDER")
                         .item1(itemService.item_one(Long.parseLong(order.getItemId())))
                         .member1(memberService.find_one(Long.parseLong(order.getMemberId())))
                         .build();
+        orderRepository.save(order1);
 
-        //
+        // order_item 저장
         Order_ItemDto orderItemDto = new Order_ItemDto();
         orderItemDto.setCustomerOrder(order1);
         orderItemDto.setOrderPrice(order1.getItem().getPrice());
@@ -36,10 +37,10 @@ public class OrderService {
         orderItemDto.setItemId(order1.getItem());
         orderItemService.orderItemSave(orderItemDto);
 
-        //
-        order1.setOrderItems(orderItemService.order_find_all());
 
+        order1.setOrderItems(orderItemService.order_find_all());
         orderRepository.save(order1);
+
 
     }
 

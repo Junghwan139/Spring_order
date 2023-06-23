@@ -22,7 +22,7 @@ spring:
       #      create 옵션은 매번 table을 drop후 생성
       #      update 옵션은 변경 사항만 alter를 적용
       #      현업에서는 validate 옵션으로 검증만 하는 경우가 대다수
-      ddl-auto: create
+      ddl-auto: update
     #     jpa가 자동으로 쿼리를 생성할 때, 쿼리가 console창에 보여지도록 하는 설정
     show_sql: true
 
