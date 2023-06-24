@@ -7,8 +7,11 @@
 
   <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
+<<<<<<< HEAD
 <!--   검색기능 주석처리-->
 
+=======
+>>>>>>> cd71e42 (23.06.24)
 <!--  <div>-->
 <!--    <div>-->
 <!--      <form th:object="${orderSearch}" class="form-inline">-->
@@ -43,6 +46,7 @@
       </tr>
       </thead>
       <tbody>
+<<<<<<< HEAD
       <tr th:each="order : ${orders}">
         <td th:text="${order.id}"></td>   <!-- # -->
         <td th:text="${order.member.name}"></td> <!-- 회원명 -->
@@ -57,6 +61,20 @@
              class="btn btn-danger">CANCEL</a>
         </td>
 
+=======
+      <tr th:each="item : ${orders}">
+        <td th:text="${item.id}"></td>   <!-- # -->
+        <td th:text="${item.member.name}"></td> <!-- 회원명 -->
+        <td th:text="${item.orderItems[0].item.name}"></td>  <!-- 상품명 -->
+        <td th:text="${item.orderItems[0].orderPrice}"></td> <!-- 주문가격 -->
+        <td th:text="${item.orderItems[0].count}"></td> <!-- 주문수량 -->
+        <td th:text="${item.status}"></td> <!-- 상태 -->
+        <td th:text="${item.orderDate}"></td> <!-- 일시 -->
+<!--        <td>-->
+<!--          <a th:if="${item.status.name() == 'ORDER'}" href="#" th:href="'javascript:cancel('+${item.id}+')'"-->
+<!--             class="btn btn-danger">CANCEL</a>-->
+<!--        </td>-->
+>>>>>>> cd71e42 (23.06.24)
       </tr>
 
       </tbody>
