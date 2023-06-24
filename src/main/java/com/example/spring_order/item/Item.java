@@ -3,11 +3,9 @@ package com.example.spring_order.item;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import javax.persistence.*;
 
 @Getter
-@Setter
 @Entity
 @NoArgsConstructor
 public class Item {
@@ -30,6 +28,13 @@ public class Item {
 
 
     }
+
+
+    public void updateItem(Long price, Long stockQuantity){
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
+
 
 
 

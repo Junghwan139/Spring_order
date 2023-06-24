@@ -26,7 +26,7 @@ public class ItemController {
     @PostMapping("items/new")
     public String member_new_post(ItemDto item) {
         itemService.item_save(item);
-        return "redirect:/";
+        return "redirect:/items";
 
     }
 
@@ -40,6 +40,7 @@ public class ItemController {
     }
 
 
+    // ★★수정 확인 필요
     @GetMapping("items/{id}/edit")   // ItemDto item 양식화면에 Dto뿌려줘야 함
     public String item_update(ItemDto item, @PathVariable("id")Long myid, Model model) {
 
@@ -71,9 +72,10 @@ public class ItemController {
     }
 
 
-
     //get요청 : request header 요청 보이고
     // post요청 : request body 요청 안보이고
+
+
 
 
 

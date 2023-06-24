@@ -40,9 +40,7 @@ public class ItemService {
             throw new Exception();
         }else{
 
-           item1.setName(item.getName());
-           item1.setPrice(item.getPrice());
-           item1.setStockQuantity(item.getStockQuantity());
+           item1.updateItem(item.getPrice(),item.getStockQuantity());
            itemRepository.save(item1);
 
         }

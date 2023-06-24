@@ -5,13 +5,13 @@ import com.example.spring_order.item.ItemService;
 import com.example.spring_order.item.ItemDto;
 import com.example.spring_order.member.MemberService;
 import com.example.spring_order.orderdetail.OrderItemService;
-import com.example.spring_order.orderdetail.Order_Item;
 import com.example.spring_order.orderdetail.Order_ItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class OrderController {
@@ -48,16 +48,17 @@ public class OrderController {
         item1.setPrice(item.getPrice());
         item1.setStockQuantity(item.getStockQuantity()-order.getCount());
         itemService.update(item1);
-        return "redirect:/";
+        return "redirect:/orders";
 
     }
 
-//    @GetMapping("orders")
-//    public String orderList(Model model){
-//        model.addAttribute("orders",orderService.order_find_all());
-//       // List<customer_Order> orderList = orderService.order_find_all();
-//        return "order/orderList";
-//    }
+    @GetMapping("orders")
+    public String orderList(Model model){
+        model.addAttribute("orders",orderService.order_find_all());
+
+
+        return "order/orderList";
+    }
 
 
 

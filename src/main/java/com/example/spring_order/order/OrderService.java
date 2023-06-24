@@ -37,9 +37,8 @@ public class OrderService {
         orderItemDto.setItemId(order1.getItem());
         orderItemService.orderItemSave(orderItemDto);
 
-
-        order1.setOrderItems(orderItemService.order_find_all());
-        orderRepository.save(order1);
+//        order1.setOrderItems(orderItemService.order_find_all());
+//        orderRepository.save(order1);
 
 
     }
@@ -49,8 +48,14 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    // read_all
     public Customer_Order order_find_one(Long id){
         return orderRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    }
+
+    // delete
+    public void order_delete(Long id){
+        orderRepository.delete(this.order_find_one(id));
     }
 
 
