@@ -48,6 +48,7 @@ public class Member {
         this.createDate = LocalDateTime.now();
 
 
+
     }
 
 
