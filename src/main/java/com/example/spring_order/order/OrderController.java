@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,19 @@ public class OrderController {
         return "order/orderList";
     }
 
+    // 검색 List 화면 호출
+    @PostMapping("orders")
+    public String order_serch(@RequestParam(value = "memberName") String name, @RequestParam(value = "orderStatus") String orderStat, Model model, OrderSearch orderSearch){
+        model.addAttribute("orderSearch",name);
+        model.addAttribute("OrderStatus",orderStat);
+        model.addAttribute("orders",orderService.order_find_all());
+        return "order/orderList";
+    }
+
+
+
+
+
 
     // 주문 cancel
     @PostMapping("orders/{id}/cancel")
@@ -90,6 +104,8 @@ public class OrderController {
 
         return "redirect:/orders";
     }
+
+
 
 
 
