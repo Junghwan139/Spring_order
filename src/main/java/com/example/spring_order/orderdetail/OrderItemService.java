@@ -21,9 +21,7 @@ public class OrderItemService {
                 .item(orderItemDto.getItemId())
                 .customerOrder(orderItemDto.getCustomerOrder())
                 .build();
-
         orderItemRepository.save(orderItems);
-
 
     }
 
@@ -39,10 +37,6 @@ public class OrderItemService {
     public Order_Item order_find_one(Long id){
         return orderItemRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
-
-
-
-
 
 
 

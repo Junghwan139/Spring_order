@@ -7,25 +7,26 @@
 
   <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
-<!--   검색기능 주석처리-->
-<!--  <div>-->
-<!--    <div>-->
-<!--      <form th:object="${orderSearch}" class="form-inline">-->
-<!--        <div class="form-group mb-2">-->
-<!--          <input type="text" th:field="*{memberName}" class="form-control" placeholder="회원명"/>-->
-<!--        </div>-->
-<!--        <div class="form-group mx-sm-1 mb-2">-->
-<!--          <select th:field="*{orderStatus}" class="form-control">-->
-<!--            <option value="">주문상태</option>-->
-<!--            <option th:each="status : ${T(com.example.domain.OrderStatus).values()}"-->
-<!--                    th:value="${status}"-->
-<!--                    th:text="${status}">option-->
-<!--            </option>-->
-<!--          </select>-->
-<!--        </div>-->
-<!--        <button type="submit" class="btn btn-primary mb-2">검색</button>-->
-<!--      </form>-->
-<!--    </div>-->
+  <!--   검색기능 주석처리-->
+  <!--${T(com.example.domain.OrderStatus).values()-->
+  <div>
+    <div>
+      <form th:object="${orderSearch}" class="form-inline">
+        <div class="form-group mb-2">
+          <input type="text" th:field="*{memberName}" class="form-control" placeholder="회원명"/>
+        </div>
+        <div class="form-group mx-sm-1 mb-2">
+          <select th:field="*{orderStatus}" class="form-control">
+            <option value="">주문상태</option>
+            <option th:each="status : ${OrderStatus}"
+                    th:value="${status}"
+                    th:text="${status}">option
+            </option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">검색</button>
+      </form>
+    </div>
 
     <table class="table table-striped">
       <thead>
@@ -50,10 +51,10 @@
         <td th:text="${order.status}"></td> <!-- 상태 -->
         <td th:text="${order.orderDate}"></td> <!-- 일시 -->
 
-<!--        <td>-->
-<!--          <a th:if="${order.status.name() == 'ORDER'}" href="#" th:href="'javascript:cancel('+${order.id}+')'"-->
-<!--             class="btn btn-danger">CANCEL</a>-->
-<!--        </td>-->
+        <td>
+          <a th:if="${order.status == 'ORDER'}" href="#" th:href="'javascript:cancel('+${order.id}+')'"
+             class="btn btn-danger">CANCEL</a>
+        </td>
 
       </tr>
       </tbody>

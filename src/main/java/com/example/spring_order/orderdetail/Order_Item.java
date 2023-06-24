@@ -26,11 +26,9 @@ public class Order_Item {
     @JoinColumn(nullable = false, name="item_id")
     private Item item;   // 주문아이템
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name="order_id")
     private Customer_Order customerOrder;   // 주문정보
-
 
     @Builder
     public Order_Item(Long orderPrice, Long count, Item item, Customer_Order customerOrder){
@@ -39,7 +37,6 @@ public class Order_Item {
         this.count = count;
         this.item = item;
         this.customerOrder = customerOrder;
-
 
     }
 

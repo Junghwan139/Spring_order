@@ -7,7 +7,6 @@ import com.example.spring_order.orderdetail.Order_Item;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@Setter
 @Entity
 @NoArgsConstructor
 public class Customer_Order {
@@ -50,6 +48,11 @@ public class Customer_Order {
     @OneToMany(mappedBy = "customerOrder", cascade = CascadeType.ALL)
     private List<Order_Item> orderItems = new ArrayList<>();
 
+
+    // status_change
+    public void status_Change(){
+        this.status = "CANCELED";
+    }
 
 
     @Builder

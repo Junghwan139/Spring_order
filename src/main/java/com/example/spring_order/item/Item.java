@@ -20,6 +20,11 @@ public class Item {
 
     private Long stockQuantity;
 
+    public void updateItem(Long price, Long stockQuantity){
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
+
     @Builder
     public Item(String name, Long price, Long stockQuantity){
         this.name = name;
@@ -28,13 +33,6 @@ public class Item {
 
 
     }
-
-
-    public void updateItem(Long price, Long stockQuantity){
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-    }
-
 
 
 

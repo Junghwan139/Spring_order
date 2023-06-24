@@ -39,23 +39,16 @@ public class ItemController {
 
     }
 
-
     // ★★수정 확인 필요
     @GetMapping("items/{id}/edit")   // ItemDto item 양식화면에 Dto뿌려줘야 함
-    public String item_update(ItemDto item, @PathVariable("id")Long myid, Model model) {
+    public String item_update(@PathVariable("id")Long myid, Model model) {
 
-//      get요청의 parameter 넣는 방법 2가지 1)pathvariable 2)RequestParam(form을 쓰는 방법)
+//      get요청의 parameter 넣는 방법 2가지
+//      1)pathvariable 2)RequestParam(form을 쓰는 방법)
 
-        Item item1 = itemService.item_one(myid);
-        item.setName(item1.getName());    // html에 form으로 되어 있어서 Domain으로 넘길 수 없음
-        item.setPrice(item1.getPrice());
-        item.setStockQuantity(item1.getStockQuantity());
-
-        model.addAttribute("form", item);
+        model.addAttribute("form", itemService.item_one(myid));
         return "items/updateItemForm";
     }
-
-
 
     @PostMapping("items/{id}/edit")
     public String itemUpdate(ItemDto item) throws Exception {
@@ -71,11 +64,8 @@ public class ItemController {
 
     }
 
-
     //get요청 : request header 요청 보이고
     // post요청 : request body 요청 안보이고
-
-
 
 
 
