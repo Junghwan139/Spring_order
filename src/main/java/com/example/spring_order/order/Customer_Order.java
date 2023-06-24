@@ -34,12 +34,13 @@ public class Customer_Order {
     private LocalDateTime orderDate;  // 주문일자
 
     //Item FK     상품명 -> item_id로 대체가능
-    @ManyToOne(fetch = FetchType.LAZY)    // @OneToOne    1:N -> author와 post(FK), 1:1 -> FK 아무쪽에나 걸 수 있으나, 거는 쪽에 Id가 걸림
-    @JoinColumn(nullable = false, name="item_id")
+    @ManyToOne(fetch = FetchType.LAZY)    // @OneToOne    1:N -> author와 post(FK), 1:1 ->
+    @JoinColumn(nullable = false, name="item_id") // FK 아무쪽에나 걸 수 있으나, 거는 쪽에 Id가 걸림
     private Item item;
 
 
-    // Member FK       member와 orders와 관계, orders findById조회 -> orders에 컬럼중에 member_id가 있네? ManyToOne걸려 있네? member_id로 member테이블 조회
+    // Member FK       member와 orders와 관계, orders findById조회 -> orders에 컬럼중에 member_id가 있네?
+    // ManyToOne걸려 있네? member_id로 member테이블 조회
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name="member_id")
     private Member member;
