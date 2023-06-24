@@ -47,8 +47,6 @@ public class Member {
         this.address = address;
         this.createDate = LocalDateTime.now();
 
-
-
     }
 
 
