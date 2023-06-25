@@ -9,6 +9,8 @@
 
   <!--   검색기능 주석처리-->
   <!--${T(com.example.domain.OrderStatus).values()-->
+  <!-- T문법 orstaters라는 클래스에서 values를 한 것 -->
+  <!--orderSearch라는 객체에 memberName, orderStatus라는 변수를 담아 서버로 다시 던져주는 것  -->
   <div>
     <div>
       <form th:object="${orderSearch}" class="form-inline">
@@ -18,7 +20,7 @@
         <div class="form-group mx-sm-1 mb-2">
           <select th:field="*{orderStatus}" class="form-control">
             <option value="">주문상태</option>
-            <option th:each="status : ${OrderStatus}"
+            <option th:each="status : ${T(com.example.spring_order.order.OrderStatus).values()}"
                     th:value="${status}"
                     th:text="${status}">option
             </option>
@@ -52,7 +54,7 @@
         <td th:text="${order.orderDate}"></td> <!-- 일시 -->
 
         <td>
-          <a th:if="${order.status == 'ORDER'}" href="#" th:href="'javascript:cancel('+${order.id}+')'"
+          <a th:if="${order.status.name() == 'ORDER'}" href="#" th:href="'javascript:cancel('+${order.id}+')'"
              class="btn btn-danger">CANCEL</a>
         </td>
 

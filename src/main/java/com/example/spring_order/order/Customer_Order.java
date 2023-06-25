@@ -1,13 +1,11 @@
 package com.example.spring_order.order;
 
-
 import com.example.spring_order.item.Item;
 import com.example.spring_order.member.Member;
 import com.example.spring_order.orderdetail.Order_Item;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,7 +25,10 @@ public class Customer_Order {
 
     private Long count;  // 주문수량
 
-    private String status;  // 상태
+    //Enumtupe.string을 주지 않으면 DB에 순서 숫자가 들어가게 된다
+    // 즉 1, 2 등 숫자 값이 디폴트
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;  // 상태
 
     private LocalDateTime orderDate;  // 주문일자
 
@@ -51,7 +52,7 @@ public class Customer_Order {
 
     // status_change
     public void status_Change(){
-        this.status = "CANCELED";
+        this.status = OrderStatus.CANCELED;
     }
 
 
@@ -59,12 +60,33 @@ public class Customer_Order {
     public Customer_Order(Long count, String status, Item item1, Member member1){
 
         this.count = count;
-        this.status = status;
+        this.status = OrderStatus.ORDER;
         this.item = item1;
         this.member = member1;
         this.orderDate = LocalDateTime.now();
 
+
     }
+
+
+    /*
+
+      @Builder
+    public Customer_Order(Long quantity, Long count, String status, Item item1, Member member1){
+
+        this.count = count;
+        this.status = OrderStatus.ORDER;
+        this.item = item1;
+        this.member = member1;
+        this.orderDate = LocalDateTime.now();
+        // Orders 객체 안에 Item객체를 OneToOne으로 가지고 있기 때문에, item객체에 quantity를
+        // 변경 시키는 removeQuantity를 호출하고, Orders만 save하여도 Item테이블에 item객체가 변경이 된다.
+        // jpa가 order를 building했을 때, item테이블의 값을 임시 저장하고 있다가 order를 save할 때, item테이블도 같이 save(update)
+        this.item.removeQuantity(quantity.intValue());
+
+    }
+
+    */
 
 
 }

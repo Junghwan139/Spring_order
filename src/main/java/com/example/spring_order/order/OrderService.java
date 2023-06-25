@@ -7,6 +7,7 @@ import com.example.spring_order.orderdetail.Order_ItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -63,6 +64,72 @@ public class OrderService {
     }
 
 
+    // read_search
+    public List<Customer_Order> order_find_search(OrderSearch orderSearch){
+
+        List<Customer_Order> orders = new ArrayList<>();
+
+        if(isNullOrEmpty(orderSearch.getMemberName()) && orderSearch.getOrderStatus() == null){
+           orders = this.order_find_all();
+
+        } else if(isNullOrEmpty(orderSearch.getMemberName()) && orderSearch.getOrderStatus() != null){
+
+            for(Customer_Order a : this.order_find_all()){
+                if(a.getStatus() == orderSearch.getOrderStatus()){
+                    orders.add(a);
+                }
+            }
+
+        } else if(!isNullOrEmpty(orderSearch.getMemberName()) && orderSearch.getOrderStatus() == null){
+
+            for(Customer_Order a : this.order_find_all()){
+                if(a.getMember().getName().equals(orderSearch.getMemberName())){
+                    orders.add(a);
+                }
+            }
+        }
+
+        else{    // 두개 이상의 컬럼으로 where 조건문을 걸떄는 and 포함
+            for(Customer_Order a : this.order_find_all()){
+                if(a.getMember().getName().equals(orderSearch.getMemberName()) && a.getStatus()==orderSearch.getOrderStatus()){
+                    orders.add(a);
+                }
+            }
+        }
+
+        return orders;
+    }
+
+
+    private boolean isNullOrEmpty(String str){
+        if(str == null){
+            return true;
+        }else if(str != null && str.isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+
+
+    // read_search
+//    public List<Customer_Order> order_find_filter(OrderSearch orderSearch) {
+//
+//        if(orderSearch.getMemberName())  == null && ordersearchDTO.gerorderstatus()==null){
+//    List<orders> orders = new arrist<>()
+//            list<member> members = memberRepositoryfindbyname(ordersearchdto.getname()){
+//        for(orders orders1:orderlist){
+//            orders.add((orders1))
+//        }
+//    }
+
+//
+//
+//
+//
+//    }
 
 
 
@@ -70,5 +137,4 @@ public class OrderService {
 
 
 
-
-}
+    }

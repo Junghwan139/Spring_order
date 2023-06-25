@@ -35,5 +35,24 @@ public class Item {
     }
 
 
+/*
+
+    public void removeQuantity(Long stockQuantity) throws Exception {
+        Long new_quantity = this.stockQuantity - stockQuantity;
+        this.stockQuantity = new_quantity;
+        if(new_quantity<0){
+            throw new Exception();
+        }
+    }
+
+    public void AddQuantity(Long stockQuantity) {
+        Long new_quantity = this.stockQuantity + stockQuantity;
+        this.stockQuantity = new_quantity;
+
+    }
+
+*/
+
+
 
 }

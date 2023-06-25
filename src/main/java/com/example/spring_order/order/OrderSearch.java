@@ -8,7 +8,7 @@ import lombok.Setter;
 public class OrderSearch {
 
     private String memberName;
-    private String orderStatus;
+    private OrderStatus orderStatus;
 
 
 }
