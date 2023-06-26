@@ -31,6 +31,7 @@ public class Customer_Order {
 
     private LocalDateTime orderDate;  // 주문일자
 
+    // 주문 : 아이템 = N : 1
     //Item FK     상품명 -> item_id로 대체가능
     @ManyToOne(fetch = FetchType.LAZY)    // @OneToOne    1:N -> author와 post(FK), 1:1 ->
     @JoinColumn(nullable = false, name="item_id") // FK 아무쪽에나 걸 수 있으나, 거는 쪽에 Id가 걸림

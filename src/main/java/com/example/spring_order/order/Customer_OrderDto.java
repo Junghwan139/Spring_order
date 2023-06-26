@@ -7,15 +7,13 @@ import java.util.List;
 
 @Getter
 @Setter
-public class OrderDto {
+public class Customer_OrderDto {
 
     private Long id;
     private List<Long> count;
     private String status;
     private String memberId;
     private List<String> itemId;
-    private List<Order_Item> orderItems;
-
 
 
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Customer_Order, Long> {
+public interface Customer_OrderRepository extends JpaRepository<Customer_Order, Long> {
 
     //findByA를 하면 A컬럼을 where조건으로 넣는 것.
 

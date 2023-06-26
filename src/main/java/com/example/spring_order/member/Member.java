@@ -32,7 +32,7 @@ public class Member {
     // LAZY 즉시 로딩x -> 참조해서 사용할 때만 로딩o, EAGER 즉시 로딩o
     // N+1 이슈를 해결하기 위해서는 LAZY 사용 추천
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-    private List<Customer_Order> orders;
+    private List<Customer_Order> customerOrders;
 
     @Column
     private LocalDateTime createDate;

@@ -6,10 +6,10 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
-public class OrderItemService {
+public class Order_ItemService {
 
     @Autowired
-    OrderItemRepository orderItemRepository;
+    Order_ItemRepository orderItemRepository;
 
 
     // create
@@ -22,7 +22,6 @@ public class OrderItemService {
                 .customerOrder(orderItemDto.getCustomerOrder())
                 .build();
         orderItemRepository.save(orderItems);
-
     }
 
 

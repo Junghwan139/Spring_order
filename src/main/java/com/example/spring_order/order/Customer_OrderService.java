@@ -2,25 +2,31 @@ package com.example.spring_order.order;
 
 import com.example.spring_order.item.ItemService;
 import com.example.spring_order.member.MemberService;
-import com.example.spring_order.orderdetail.OrderItemRepository;
+import com.example.spring_order.orderdetail.Order_ItemRepository;
 import com.example.spring_order.orderdetail.Order_Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class OrderService {
+@Transactional(rollbackOn = {Exception.class})
+//에러 발생시 rollback  Checked Exception에도 예외 발생을 위해서는 rollbackOn = {Exception.class} 추가 확인 필요
+public class Customer_OrderService {
 
-    @Autowired OrderRepository orderRepository;
+    @Autowired
+    Customer_OrderRepository orderRepository;
     @Autowired MemberService memberService;
     @Autowired ItemService itemService;
-    @Autowired OrderItemRepository orderItemRepository;
+    @Autowired
+    Order_ItemRepository orderItemRepository;
 
     //Create
-    public void order_save(OrderDto order) throws Exception {
+    public void order_save(Customer_OrderDto order) throws Exception {
 
+        // ★아이템 1개에 여러개의 주문으로 저장됨 → 확인필요
         for(int i = 0;i<order.getCount().size();i++){
 
             // customer_order 저장
@@ -41,7 +47,6 @@ public class OrderService {
                     .build();
             orderItemRepository.save(orderItem);
         }
-
 
     }
 
@@ -113,7 +118,6 @@ public class OrderService {
             return false;
         }
     }
-
 
     // read_search
 //    public List<Customer_Order> order_find_filter(OrderSearch orderSearch) {

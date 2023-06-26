@@ -22,10 +22,12 @@ public class Order_Item {
 
     private Long count; // 주문수량
 
+    // 주문아이템 : 아이템 = N : 1
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name="item_id")
     private Item item;   // 주문아이템
 
+    // 주문아이템 : 주문 = N : 1
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name="order_id")
     private Customer_Order customerOrder;   // 주문정보
