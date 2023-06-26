@@ -10,10 +10,10 @@ import java.util.List;
 public class OrderDto {
 
     private Long id;
-    private Long count;
+    private List<Long> count;
     private String status;
     private String memberId;
-    private String itemId;
+    private List<String> itemId;
     private List<Order_Item> orderItems;
 
 

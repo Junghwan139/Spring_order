@@ -31,11 +31,8 @@ public class Item {
         this.price = price;
         this.stockQuantity = stockQuantity;
 
-
     }
 
-
-/*
 
     public void removeQuantity(Long stockQuantity) throws Exception {
         Long new_quantity = this.stockQuantity - stockQuantity;
@@ -48,11 +45,7 @@ public class Item {
     public void AddQuantity(Long stockQuantity) {
         Long new_quantity = this.stockQuantity + stockQuantity;
         this.stockQuantity = new_quantity;
-
     }
-
-*/
-
 
 
 }

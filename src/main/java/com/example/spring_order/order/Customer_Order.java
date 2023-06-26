@@ -18,7 +18,6 @@ public class Customer_Order {
 
 
     //  주문(order) : id, member_id, item_id, 주문수량, 주문상태, item, member
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -57,36 +56,19 @@ public class Customer_Order {
 
 
     @Builder
-    public Customer_Order(Long count, String status, Item item1, Member member1){
+    public Customer_Order(Long count, String status, Item item1, Member member1) throws Exception {
 
         this.count = count;
         this.status = OrderStatus.ORDER;
         this.item = item1;
-        this.member = member1;
-        this.orderDate = LocalDateTime.now();
-
-
-    }
-
-
-    /*
-
-      @Builder
-    public Customer_Order(Long quantity, Long count, String status, Item item1, Member member1){
-
-        this.count = count;
-        this.status = OrderStatus.ORDER;
-        this.item = item1;
-        this.member = member1;
-        this.orderDate = LocalDateTime.now();
         // Orders 객체 안에 Item객체를 OneToOne으로 가지고 있기 때문에, item객체에 quantity를
         // 변경 시키는 removeQuantity를 호출하고, Orders만 save하여도 Item테이블에 item객체가 변경이 된다.
         // jpa가 order를 building했을 때, item테이블의 값을 임시 저장하고 있다가 order를 save할 때, item테이블도 같이 save(update)
-        this.item.removeQuantity(quantity.intValue());
+        this.item.removeQuantity(count);
+        this.member = member1;
+        this.orderDate = LocalDateTime.now();
 
     }
-
-    */
 
 
 }
