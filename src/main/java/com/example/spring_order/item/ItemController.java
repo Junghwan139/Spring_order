@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -39,10 +38,9 @@ public class ItemController {
 
     }
 
-    // ★★수정 확인 필요
+
     @GetMapping("items/{id}/edit")   // ItemDto item 양식화면에 Dto뿌려줘야 함
     public String item_update(@PathVariable("id")Long myid, Model model) {
-
 //      get요청의 parameter 넣는 방법 2가지
 //      1)pathvariable 2)RequestParam(form을 쓰는 방법)
 
