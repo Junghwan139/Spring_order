@@ -47,7 +47,6 @@ public class Customer_OrderService {
                     .build();
             orderItemRepository.save(orderItem);
         }
-
     }
 
     // read_all
