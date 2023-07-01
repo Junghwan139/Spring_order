@@ -42,16 +42,13 @@
       </thead>
       <tbody>
       <tr th:each="order : ${orders}">
-        <td>
-          <a
-          th:href="@{/orderitems(id=${order.id})}" th:text="${order.id}">
-          </a>
-        </td>   <!-- # -->
+        <td th:text="${order.id}"></td> <!-- 회원명 -->
         <td th:text="${order.member.name}"></td> <!-- 회원명 -->
         <td th:text="${order.status}"></td> <!-- 상태 -->
         <td th:text="${order.orderDate}"></td> <!-- 일시 -->
 
         <td>
+          <a th:href="@{/orderitems(id=${order.id})}" class="btn btn-secondary">상세보기</a>
           <a th:if="${order.status.name() == 'ORDER'}" href="#" th:href="'javascript:cancel('+${order.id}+')'"
              class="btn btn-danger">CANCEL</a>
         </td>
