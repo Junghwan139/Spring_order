@@ -31,14 +31,11 @@ public class Customer_Order {
     private LocalDateTime orderDate;  // 주문일자
 
 
-
     // Member FK       member와 orders와 관계, orders findById조회 -> orders에 컬럼중에 member_id가 있네?
     // ManyToOne걸려 있네? member_id로 member테이블 조회
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name="member_id")
     private Member member;
-
 
 //    // 주문 : 아이템 = N : 1
 //    //Item FK     상품명 -> item_id로 대체가능
@@ -46,11 +43,9 @@ public class Customer_Order {
 //    @JoinColumn(nullable = false, name="item_id") // FK 아무쪽에나 걸 수 있으나, 거는 쪽에 Id가 걸림
 //    private Item item;
 
-
     // Order_Item 조회해오기
     @OneToMany(mappedBy = "customerOrder", cascade = CascadeType.ALL)
     private List<Order_Item> orderItems = new ArrayList<>();
-
 
     // status_change
     public void status_Change(){
@@ -59,7 +54,7 @@ public class Customer_Order {
 
 
     @Builder
-    public Customer_Order(String status,Member member1) throws Exception {
+    public Customer_Order(Member member1) throws Exception {
 
         this.status = OrderStatus.ORDER;
         // Orders 객체 안에 Item객체를 OneToOne으로 가지고 있기 때문에, item객체에 quantity를

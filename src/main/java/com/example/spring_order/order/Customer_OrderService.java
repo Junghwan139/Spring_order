@@ -4,7 +4,6 @@ import com.example.spring_order.item.ItemService;
 import com.example.spring_order.member.MemberService;
 import com.example.spring_order.orderdetail.Order_ItemRepository;
 import com.example.spring_order.orderdetail.Order_Item;
-import com.example.spring_order.orderdetail.Order_ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
@@ -21,8 +20,6 @@ public class Customer_OrderService {
     @Autowired MemberService memberService;
     @Autowired ItemService itemService;
     @Autowired Order_ItemRepository orderItemRepository;
-    @Autowired
-    Order_ItemService orderItemService;
 
     //Create
     public void order_save(Customer_OrderDto order) throws Exception {
@@ -31,7 +28,6 @@ public class Customer_OrderService {
 
             // customer_order 저장
             Customer_Order order1 = Customer_Order.builder()
-                    .status("ORDER")
                     .member1(memberService.find_one(Long.parseLong(order.getMemberId())))
                     .build();
             orderRepository.save(order1);
@@ -63,6 +59,7 @@ public class Customer_OrderService {
 
     // update_status
     public void order_change_status(Long id){
+        // 주문의 상태를 order → canceled로 바꿈
         Customer_Order customerOrder = this.order_find_one(id);
         customerOrder.status_Change();
 
@@ -72,12 +69,6 @@ public class Customer_OrderService {
             a.getItem().AddQuantity(a.getCount());
             orderItemRepository.save(a);
         }
-
-
-//        customerOrder.getItem().AddQuantity(customerOrder.getCount());
-//        orderRepository.save(customerOrder);
-
-
     }
 
     // delete
@@ -129,6 +120,7 @@ public class Customer_OrderService {
         }
     }
 
+    //레파지토리에 findBy로 하는 방식...
     // read_search
 //    public List<Customer_Order> order_find_filter(OrderSearch orderSearch) {
 //
@@ -139,7 +131,6 @@ public class Customer_OrderService {
 //            orders.add((orders1))
 //        }
 //    }
-
 //    }
 
 

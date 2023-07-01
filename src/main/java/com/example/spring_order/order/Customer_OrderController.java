@@ -22,9 +22,9 @@ public class Customer_OrderController {
     @Autowired Order_ItemRepository orderItemRepository;
 
     @GetMapping("order")
-    public String order_new(Model model1, Model model2){
-        model1.addAttribute("items", itemService.item_findall());
-        model2.addAttribute("members", memberService.member_findall());
+    public String order_new(Model model){
+        model.addAttribute("items", itemService.item_findall());
+        model.addAttribute("members", memberService.member_findall());
 
         return "order/orderForm";
     }
@@ -50,15 +50,13 @@ public class Customer_OrderController {
     @PostMapping("orders/{id}/cancel")
     public String orderCancel(@PathVariable("id")Long myid) throws Exception {
         orderService.order_change_status(myid);
-
         return "redirect:/orders";
     }
 
+    //orderDetail
     @GetMapping("orderitems")
     public String orderdetail(@RequestParam(value = "id") Long myid, Model model){
-
         model.addAttribute("order_items",orderItemRepository.findByCustomerOrderId(myid));
-
         return "order/orderDetail";
 
     }
