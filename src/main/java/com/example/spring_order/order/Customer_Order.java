@@ -52,7 +52,6 @@ public class Customer_Order {
         this.status = OrderStatus.CANCELED;
     }
 
-
     @Builder
     public Customer_Order(Member member1) throws Exception {
 
