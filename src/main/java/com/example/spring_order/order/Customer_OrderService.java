@@ -4,6 +4,7 @@ import com.example.spring_order.item.ItemService;
 import com.example.spring_order.member.MemberService;
 import com.example.spring_order.orderdetail.Order_ItemRepository;
 import com.example.spring_order.orderdetail.Order_Item;
+import com.example.spring_order.orderdetail.Order_ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
@@ -16,34 +17,35 @@ import java.util.List;
 //에러 발생시 rollback  Checked Exception에도 예외 발생을 위해서는 rollbackOn = {Exception.class} 추가 확인 필요
 public class Customer_OrderService {
 
-    @Autowired
-    Customer_OrderRepository orderRepository;
+    @Autowired Customer_OrderRepository orderRepository;
     @Autowired MemberService memberService;
     @Autowired ItemService itemService;
+    @Autowired Order_ItemRepository orderItemRepository;
     @Autowired
-    Order_ItemRepository orderItemRepository;
+    Order_ItemService orderItemService;
 
     //Create
     public void order_save(Customer_OrderDto order) throws Exception {
 
         // ★아이템 1개에 여러개의 주문으로 저장됨 → 확인필요
-        for(int i = 0;i<order.getCount().size();i++){
 
             // customer_order 저장
             Customer_Order order1 = Customer_Order.builder()
-                    .count(order.getCount().get(i))
                     .status("ORDER")
-                    .item1(itemService.item_one(Long.parseLong(order.getItemId().get(i))))
                     .member1(memberService.find_one(Long.parseLong(order.getMemberId())))
                     .build();
             orderRepository.save(order1);
 
+        for(int i = 0;i<order.getCount().size();i++){
             // order_item 저장
             Order_Item orderItem = Order_Item.builder()
+                    // order객체는 현재로서는 findById할 수 있는 매개변수가 없다.
+                    // 그래서, 위에서 생성한 order객체를 orderItem에 바로 insert시킬 수 있다.(아직 DB에 저장이 되지 않았음에도
+                    // 불구하고 임시저장되어 있는 상태로도 insert가 가능
                     .customerOrder(order1)
-                    .orderPrice(order1.getItem().getPrice())
-                    .count(order1.getCount())
-                    .item(order1.getItem())
+                    .orderPrice(itemService.item_one(Long.parseLong(order.getItemId().get(i))).getPrice())
+                    .count(order.getCount().get(i))
+                    .item(itemService.item_one(Long.parseLong(order.getItemId().get(i))))
                     .build();
             orderItemRepository.save(orderItem);
         }
@@ -63,9 +65,18 @@ public class Customer_OrderService {
     public void order_change_status(Long id){
         Customer_Order customerOrder = this.order_find_one(id);
         customerOrder.status_Change();
+
         // 아이템 재고량 + 시킴
-        customerOrder.getItem().AddQuantity(customerOrder.getCount());
-        orderRepository.save(customerOrder);
+        List<Order_Item> orderItems = orderItemRepository.findByCustomerOrderId(id);
+        for(Order_Item a : orderItems){
+            a.getItem().AddQuantity(a.getCount());
+            orderItemRepository.save(a);
+        }
+
+
+//        customerOrder.getItem().AddQuantity(customerOrder.getCount());
+//        orderRepository.save(customerOrder);
+
 
     }
 

@@ -2,6 +2,7 @@ package com.example.spring_order.order;
 
 import com.example.spring_order.item.ItemService;
 import com.example.spring_order.member.MemberService;
+import com.example.spring_order.orderdetail.Order_ItemRepository;
 import com.example.spring_order.orderdetail.Order_ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 
@@ -21,6 +24,8 @@ public class Customer_OrderController {
     Customer_OrderService orderService;
     @Autowired
     Order_ItemService orderItemService;
+    @Autowired
+    Order_ItemRepository orderItemRepository;
 
     @GetMapping("order")
     public String order_new(Model model1, Model model2){
@@ -54,5 +59,17 @@ public class Customer_OrderController {
 
         return "redirect:/orders";
     }
+
+    @GetMapping("orderitems")
+    public String orderdetail(@RequestParam(value = "id") Long myid, Model model){
+
+        model.addAttribute("order_items",orderItemRepository.findByCustomerOrderId(myid));
+
+        return "order/orderDetail";
+
+    }
+
+
+
 
 }

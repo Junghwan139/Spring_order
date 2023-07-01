@@ -13,7 +13,7 @@ public class Order_ItemService {
 
 
     // create
-    public void orderItemSave(Order_ItemDto orderItemDto){
+    public void orderItemSave(Order_ItemDto orderItemDto) throws Exception {
 
         Order_Item orderItems = Order_Item.builder()
                 .orderPrice(orderItemDto.getItemId().getPrice())
@@ -36,6 +36,9 @@ public class Order_ItemService {
     public Order_Item order_find_one(Long id){
         return orderItemRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
+
+
+
 
 
 

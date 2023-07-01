@@ -10,9 +10,9 @@ public class Customer_OrderDto {
 
     private Long id;
     private List<Long> count;
+    private List<String> itemId;
     private String status;
     private String memberId;
-    private List<String> itemId;
 
 
 }

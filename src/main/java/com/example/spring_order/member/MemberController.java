@@ -1,6 +1,5 @@
 package com.example.spring_order.member;
 
-import com.example.spring_order.order.Customer_Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,15 +43,15 @@ public class MemberController {
         model.addAttribute("members",members);
 
         // 주문수량 주문금액 합계
-        for(Member a : members){
-            System.out.println(a.getName()+"의 주문 갯수는 : "+a.getCustomerOrders().size());
-            int order_total = 0;
-            for(Customer_Order b : a.getCustomerOrders()){
-             //   System.out.println(b.getItem().getPrice().intValue() +"*"+b.getCount().intValue());
-                order_total += b.getItem().getPrice().intValue() * b.getCount().intValue();
-            }
-            System.out.println("주문 금액은 : "+order_total);
-        }
+//        for(Member a : members){
+//            System.out.println(a.getName()+"의 주문 갯수는 : "+a.getCustomerOrders().size());
+//            int order_total = 0;
+//            for(Customer_Order b : a.getCustomerOrders()){
+//             //   System.out.println(b.getItem().getPrice().intValue() +"*"+b.getCount().intValue());
+//                order_total += b.getItem().getPrice().intValue() * b.getCount().intValue();
+//            }
+//            System.out.println("주문 금액은 : "+order_total);
+//        }
 
 
         return "members/memberList";
