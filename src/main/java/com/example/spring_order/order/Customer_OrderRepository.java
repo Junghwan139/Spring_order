@@ -11,5 +11,6 @@ public interface Customer_OrderRepository extends JpaRepository<Customer_Order, 
     //findByA를 하면 A컬럼을 where조건으로 넣는 것.
     List<Customer_Order> findByMember(Member member);
     List<Customer_Order> findByMemberAndStatus(Member member, OrderStatus orderStatus);
+    List<Customer_Order> findByMemberId(Long id);
 
 }

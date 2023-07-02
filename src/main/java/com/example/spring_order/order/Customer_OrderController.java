@@ -20,6 +20,7 @@ public class Customer_OrderController {
     @Autowired ItemService itemService;
     @Autowired Customer_OrderService orderService;
     @Autowired Order_ItemRepository orderItemRepository;
+    @Autowired Customer_OrderRepository customerOrderRepository;
 
     @GetMapping("order")
     public String order_new(Model model){
@@ -58,7 +59,15 @@ public class Customer_OrderController {
     public String orderdetail(@RequestParam(value = "id") Long myid, Model model){
         model.addAttribute("order_items",orderItemRepository.findByCustomerOrderId(myid));
         return "order/orderDetail";
+    }
 
+
+    // 주문 List 화면 호출
+    @GetMapping("/orders/member")
+    public String orderListmem(Model model,@RequestParam(value = "id")Long myid, OrderSearch orderSearch){
+        List<Customer_Order> orderList = customerOrderRepository.findByMemberId(myid);
+        model.addAttribute("orders",orderList);
+        return "order/orderList";
     }
 
 

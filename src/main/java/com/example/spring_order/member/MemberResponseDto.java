@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MemberDto {
+public class MemberResponseDto {
 
     public Long id;
     private String name;
@@ -14,7 +14,6 @@ public class MemberDto {
     private String city;
     private String street;
     private String zipcode;
-
-
+    private Long ordercount;
 
 }

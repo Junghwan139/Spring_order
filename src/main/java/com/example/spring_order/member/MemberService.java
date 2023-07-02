@@ -12,7 +12,7 @@ public class MemberService {
 
 
     // Create
-    public void member_save(MemberDto member){
+    public void member_save(MemberRequestDto member){
         Address address = new Address(member.getCity(), member.getStreet(),member.getZipcode());
         Member member1 = Member.builder()
                 .name(member.getName())
