@@ -7,14 +7,15 @@
 
   <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
-  <!--   검색기능 주석처리-->
-  <!--${T(com.example.domain.OrderStatus).values()-->
+  <!-- 검색기능 주석처리-->
+  <!-- ${T(com.example.domain.OrderStatus).values()-->
   <!-- T문법 orstaters라는 클래스에서 values를 한 것 -->
-  <!--orderSearch라는 객체에 memberName, orderStatus라는 변수를 담아 서버로 다시 던져주는 것  -->
+  <!-- orderSearch라는 객체에 memberName, orderStatus라는 변수를 담아 서버로 다시 던져주는 것  -->
   <div>
     <div>
       <form th:object="${orderSearch}" action="/orders" class="form-inline">
-<!--        action이 없으면 원래 상단에 있는 url그대로 사용, 필요한 경우 입력-->
+  <!-- action이 없으면 원래 상단에 있는 url그대로 사용, 필요한 경우 입력-->
+
         <div class="form-group mb-2">
           <input type="text" th:field="*{memberName}" class="form-control" placeholder="회원명"/>
         </div>
