@@ -15,6 +15,7 @@
         <th>도시</th>
         <th>주소</th>
         <th>우편번호</th>
+        <th>주문금액</th>
         <th>주문갯수</th>
       </tr>
       </thead>
@@ -26,6 +27,7 @@
         <td th:text="${member.city}"></td>
         <td th:text="${member.street}"></td>
         <td th:text="${member.zipcode}"></td>
+        <td th:text="${member.total}"></td>
         <td>
           <a th:href="@{/orders/member(id=${member.id})}" th:text="${member.ordercount}"></a>
         </td>

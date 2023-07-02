@@ -52,6 +52,14 @@ public class MemberController {
 
         for(Member a : members) {
             //ResponseDto입력
+            int total = 0;
+            for(Customer_Order b : a.getCustomerOrders()){
+                if(b.getStatus() != OrderStatus.CANCELED){
+                    for(int i =0;i<b.getOrderItems().size();i++){
+                     total+=b.getOrderItems().get(i).getCount().intValue() *b.getOrderItems().get(i).getOrderPrice();
+                    }
+                }
+            }
             MemberResponseDto memberResponseDtos = new MemberResponseDto();
             memberResponseDtos.setId(a.getId());
             memberResponseDtos.setName(a.getName());
@@ -60,36 +68,12 @@ public class MemberController {
             memberResponseDtos.setStreet(a.getAddress().getStreet());
             memberResponseDtos.setZipcode(a.getAddress().getZipcode());
             memberResponseDtos.setOrdercount(Long.parseLong(String.valueOf(a.getCustomerOrders().size())));
+            memberResponseDtos.setTotal((long)total);
             memberResponseDtos1.add(memberResponseDtos);
 
         }
 
         model.addAttribute("members",memberResponseDtos1);
-
-
-
-        // 주문수량 주문금액 합계
-        for(Member a : members){
-            // 고객이 주문한 오더를 꺼냄
-            List<Customer_Order> customerOrders = customerOrderRepository.findByMember(a);
-
-            int total = 0;
-
-            // 오더에서 캔슬이 안된 주문을 꺼냄
-            for(Customer_Order b : customerOrders ){
-                if(b.getStatus() != OrderStatus.CANCELED){
-
-                    // 주문별로 구매된 아이템을 꺼내고 합을 구함
-                    for(int i = 0;i<b.getOrderItems().size();i++){
-                        total += b.getOrderItems().get(i).getOrderPrice().intValue() * b.getOrderItems().get(i).getCount().intValue();
-                    }
-                }
-            }
-            System.out.println(a.getName() +"의 주문금액은 : "+total);
-        }
-
-
-
 
         return "members/memberList";
 

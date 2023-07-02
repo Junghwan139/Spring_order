@@ -15,5 +15,6 @@ public class MemberResponseDto {
     private String street;
     private String zipcode;
     private Long ordercount;
+    private Long total;
 
 }
